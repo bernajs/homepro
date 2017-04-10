@@ -833,7 +833,7 @@ Customer = {
                         </div>\
                         </a>\
                         </div>';
-                        $('.lista-servicios').empty().html(buffer);
+                        $('.lista-servicios').html(buffer);
                     });
                     // $(".servicio").each(function(index) {
                     //     var colorR = Math.floor((Math.random() * 256));
@@ -1281,6 +1281,21 @@ Customer = {
                 }
             }
         );
+    },
+    getNotificaciones: function(e){
+        uid = getUid();
+        var notificaciones = 0;
+        Service.execute("_ctrl/ctrl.service.php",
+        {
+            exec: 'getNotificaciones',
+            data: uid
+        }, function(r){
+            if(r.notificaciones){
+                notificaciones = r.notificaciones;
+            }
+            console.log(r);
+            $('.notificaciones').html(notificaciones);
+        });
     },
     switch: function(e) {
         if (e == 1) {

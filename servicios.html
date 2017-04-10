@@ -38,6 +38,14 @@
             width: 86% !important;
             margin-top: 7% !important;
         }
+        
+        .notificaciones {
+            position: absolute;
+            left: 15px;
+            z-index: 999;
+            color: white;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -51,6 +59,12 @@
             </div>
         </div>
     </div>
+    <div class="fixed-action-btn">
+        <span class="notificaciones">0</span>
+        <a href="historial.html" class="btn-floating btn-large red">
+            <i class="large material-icons">comment</i>
+        </a>
+    </div>
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="admin/assets/plugins/jquery/jquery-2.2.0.min.js"></script>
     <script type="text/javascript" src="admin/assets/plugins/sweetalert/sweetalert.min.js"></script>
@@ -61,6 +75,7 @@
     $(document).ready(function(e) {
         checkSession();
         Customer.getServicios();
+        Customer.getNotificaciones();
     });
 </script>
 

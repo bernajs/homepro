@@ -33,6 +33,14 @@ case "getUsuario":
 }
 echo json_encode($result);
 break;
+case "getNotificaciones":
+    $data=$_POST['data'];
+    $notificaciones = $obj->getNotifiaciones($data);
+    if ($notificaciones) {
+        $result['notificaciones'] = count($notificaciones);
+    }
+    echo json_encode($result);
+    break;
 case "updateProfile":
     $data = $_POST['data'];
     $obj->set_nombre($data['nombre'])->

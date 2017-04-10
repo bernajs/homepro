@@ -256,6 +256,11 @@ public function getServicios($id){
     return $servicios;
 }
 
+public function getNotifiaciones($id){
+    $query = 'SELECT id FROM chat WHERE status = 0 AND tipo_usuario = 1 AND id_usuario = '.$id;
+    return $this->execute($query);
+}
+
 public function getZonas($id=null){
     $query = 'SELECT zona, cat_zona.id FROM usuario
     INNER JOIN cat_zona ON usuario.id_ciudad = cat_zona.id_ciudad
