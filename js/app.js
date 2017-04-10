@@ -820,15 +820,15 @@ Customer = {
                     var cantidad = '';
                     data.forEach(function(element) {
                         if (element[0]) {
-                            cantidad = '(' + element[0].length + ')'
-                        } else { cantidad = '(0)' }
+                            cantidad = element[0].length;
+                        } else { cantidad = '0' }
                         buffer += '<div class="col s6"><a href="contacto.html?servicio=' + element.id + '">\
                         <div class="card">\
                         <div class="card-image">\
                         <img src="admin/uploads/servicios/servicio_' + element.id + '_' + element.imagen + '" alt="">\
                         </div>\
                         <div class="card-action servicio" style="background-color: ' + element.color + '">\
-                        <b class="txt-blanco">' + element.servicio + ' ' + cantidad + '</b>\
+                        <b class="txt-blanco">' + element.servicio + '</b><span class="cantidad"> ' + cantidad + '</span>\
                         </div>\
                         </div>\
                         </a>\

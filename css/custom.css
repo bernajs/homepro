@@ -224,6 +224,16 @@ h6 {
     /*color: blue;*/
 }
 
+.cantidad {
+    color: #f9f9f9;
+    position: absolute;
+    top: -18px;
+    left: 45%;
+    background-color: black;
+    border-radius: 50px;
+    padding: 2px 8px;
+}
+
 .card-action {
     padding: 5px !important;
 }
