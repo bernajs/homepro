@@ -129,17 +129,32 @@ if(isset($_GET['call'])){
           </div>
           <ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion">
             <li class="no-padding <?php if($active == 'dashboard' || !$active){echo 'active';} ?>"><a class="waves-effect waves-grey" href="index.php?call=dashboard"><i class="material-icons">settings_input_svideo</i>Dashboard</a></li>
+            <?php if(in_array('negocio', $permisos)):?>
             <li class="no-padding <?php if($active == 'negocio'){echo 'active';} ?>"><a class="waves-effect waves-grey" href="index.php?call=negocio"><i class="material-icons">store</i>Negocios</a></li>
+            <?php endif ?>
+            <?php if(in_array('usuario', $permisos)):?>            
             <li class="no-padding <?php if($active == 'usuario'){echo 'active';} ?>"><a class="waves-effect waves-grey" href="index.php?call=usuario"><i class="material-icons">supervisor_account</i>Usuarios</a></li>
+            <?php endif ?>
+            <?php if(in_array('admin', $permisos)):?>            
+            <li class="no-padding <?php if($active == 'admin'){echo 'active';} ?>"><a class="waves-effect waves-grey" href="index.php?call=admin"><i class="material-icons">supervisor_account</i>Administradores</a></li>
+            <?php endif ?>
+            <?php if(in_array('voto_ciudad', $permisos)):?>
             <li class="no-padding <?php if($active == 'voto_ciudad'){echo 'active';} ?>"><a class="waves-effect waves-grey" href="index.php?call=voto_ciudad"><i class="material-icons">location_city</i>Votos ciudades</a></li>
+            <?php endif ?>
             <!--<li class="no-padding <?php if($active == 'testimonio'){echo 'active';} ?>"><a class="waves-effect waves-grey" href="index.php?call=testimonio"><i class="material-icons">subject</i>Testimonios</a></li>-->
             <li class="no-padding ">
               <a class="collapsible-header waves-effect waves-grey <?php if($active == 'ciudad' || $active == 'servicio' || $active == 'zona'){echo 'active';} ?>"><i class="material-icons">view_list</i>Catalogos<i class="nav-drop-icon material-icons">keyboard_arrow_right</i></a>
               <div class="collapsible-body">
                 <ul>
+                <?php if(in_array('ciudad', $permisos)):?>
                   <li class="no-padding <?php if($active == 'ciudad'){echo 'subactive';} ?>"><a class="waves-effect waves-grey" href="index.php?call=ciudad"><i class="material-icons">location_on</i>Ciudades</a></li>
+                  <?php endif ?>
+                  <?php if(in_array('servicio', $permisos)):?>
                   <li class="no-padding <?php if($active == 'servicio'){echo 'subactive';} ?>"><a class="waves-effect waves-grey" href="index.php?call=servicio"><i class="material-icons">assignment</i>Servicios</a></li>
+                  <?php endif ?>
+                  <?php if(in_array('zona', $permisos)):?>
                   <li class="no-padding <?php if($active == 'zona'){echo 'subactive';} ?>"><a class="waves-effect waves-grey" href="index.php?call=zona"><i class="material-icons">aspect_ratio</i>Zonas</a></li>
+                  <?php endif ?>
                 </ul>
               </div>
             </li>

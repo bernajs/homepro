@@ -107,6 +107,7 @@ Crud = {
         var action = $(e.target).data("action");
         var src = $(e.target).data("src");
         if (!_self.validate($(e.target).data("form"))) { return false; };
+        if(src == 'admin'){var permisos = $('#permisos').val(); formData.permisos = permisos;}
         Dao.execute($(e.target).data("src"), {
                 exec: action,
                 data: formData
