@@ -246,7 +246,7 @@ public function getNOID($id){
 // Servicios
 public function getServicios($id){
     $data = array();
-    $query = "SELECT * FROM cat_servicio WHERE id > 0";
+    $query = "SELECT * FROM cat_servicio WHERE id > 0 ORDER BY servicio ASC";
     $servicios = $this->execute($query);
     $cantidad_servicios;
     for ($i=0; $i < count($servicios); $i++) {
