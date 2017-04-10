@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mensajes</title>
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta charset="utf-8">
+    <!--Import Google Icon Font-->
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="admin/assets/plugins/sweetalert/sweetalert.css" media="screen,projection" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        .loader {
+            position: absolute;
+            right: 33%;
+            top: 33%;
+            border: 16px solid #f3f3f3;
+            /* Light grey */
+            border-top: 16px solid #3498db;
+            /* Blue */
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+            display: none;
+        }
+        
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .container {
+            width: 86% !important;
+        }
+        
+        .right-align {
+            /*margin-left: 18vh !important;*/
+            float: right;
+        }
+        
+        .margint-10 {
+            margin-top: 50px !important;
+            margin-left: 15px !important;
+        }
+        
+        .chat {
+            margin-top: 62px !important;
+        }
+        
+        a {
+            color: white !important;
+        }
+        
+        .share {
+            padding-top: 5px !important;
+            padding-left: 20px !important;
+            padding-right: 30px !important;
+        }
+        
+        .photo {
+            padding-top: 5px !important;
+            padding-right: 35px !important;
+            /*margin-left: 10px !important;*/
+        }
+        
+        .secondary-content {
+            float: right !important;
+            margin-top: 10px !important;
+            margin-right: 10px !important;
+        }
+        
+        .modal-footer {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .modal-content {
+            padding-top: 20px !important;
+        }
+        
+        .hora {
+            /*width: auto !important;*/
+            padding-right: 0px !important;
+            padding-left: 0px !important;
+        }
+        
+        h5 {
+            margin-left: 8%;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+        
+        img {
+            float: right;
+        }
+        
+        img.color-azul {
+            /*padding: 10px !important;*/
+        }
+        
+        .caja-msj {
+            word-wrap: break-word;
+        }
+        
+        .div-msj {
+            padding: 0px !important;
+        }
+        
+        i {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row header color-azul-claro">
+    </div>
+    <div class="loader"></div>
+    <div class="container">
+        <div class="row chat">
+        </div>
+        <div class="msj">
+            <div class="row chat-share">
+                <div class="col s1 share onClickGetCompartir">
+                    <a href="javascript:void(0);" class=""> <i class="material-icons txt-azul">share</i></a>
+                </div>
+                <div class="col s1 photo onClickUpload">
+                    <a href="javascript:void(0);" <i class="material-icons txt-azul">photo</i> </a>
+                </div>
+                <div class="col s6 chat-input">
+                    <input id="message" type="text" class="" placeholder="Escribir mensaje" style="border:none !important">
+                </div>
+                <div class="col s1 chat-btn">
+                    <a href="javascript:void(0);" class="onClickEnviar txt-azul">Enviar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style=" display:none"><input type="file" name="fileToUpload" id="fileToUpload" accept="image/*" capture="camera" />
+        <input type="hidden" id="imagen" name="imagen" value="0" /></div>
+
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <form name="frmCompartir" id="frmCompartir">
+                <div class="row">
+                    <h5>Compartir</h5>
+                    <div class="col s12 input-field">
+                        <input type="checkbox" id="movil" name="movil">
+                        <label for="movil" class="movil">Teléfono</label>
+                    </div>
+                    <div class="col s12 input-field">
+                        <input type="checkbox" id="correo" name="correo">
+                        <label for="correo" class="correo">Correo</label>
+                    </div>
+                    <div class="col s12 input-field">
+                        <input type="checkbox" id="pos" name="pos">
+                        <label for="pos" class="pos">Ubicación actual</label>
+                    </div>
+                    <div class="row direcciones">
+                        <h6>Direcciones</h6>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col s12">
+                    <a href="javascript:void(0);" class="modal-action blue btn-flat onClickCompartir full-btn center-align">Enviar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="admin/assets/plugins/jquery/jquery-2.2.0.min.js"></script>
+    <script type="text/javascript" src="admin/assets/plugins/sweetalert/sweetalert.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/upload.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzHWQL9mUfvfV-iQzrrrhc_e-bS4PoiqU&callback=initMap" asyncdefer></script>
+    <script>
+        $(document).ready(function() {
+            Customer.getChat();
+            Upload();
+            $('#message').click(function() {
+                $('html,body').delay(500).animate({
+                    scrollTop: document.body.scrollHeight
+                }, 2000);
+            });
+
+            setInterval(function() {
+                Customer.getChat();
+            }, 5000);
+        });
+    </script>
+</body>
+
+</html>

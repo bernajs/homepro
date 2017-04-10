@@ -1,0 +1,34 @@
+.modal-content {
+    padding: 0px !important;
+}
+
+.modal-content .card {
+    margin: 0px !important;
+}
+
+.modal-footer {
+    background-color: #276471 !important;
+}
+
+.btnTableDelete,
+.btnTableEdit {
+    height: 20px !important;
+    line-height: 20px !important;
+    padding: 5px !important;
+}
+
+.btnTableEdit {
+    /*background-color: #3D8EB9 !important;*/
+    /*background-color: white !important;*/
+    /*color: black !important;*/
+}
+
+.btnTableDelete {
+    /*background-color: white !important;    */
+    /*background-color: #FF6766 !important;*/
+    /*color: #c0392b !important;*/
+}
+
+.dataTable td, .dataTable th{
+    padding: 5px !important;
+}

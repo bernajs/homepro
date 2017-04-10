@@ -1,0 +1,207 @@
+.color-azul {
+    /*background-color: #2C8BEB !important;*/
+    background-color: black !important;
+}
+
+.btn-floating.btn-large i {
+    line-height: 65px;
+}
+
+.modal-content {
+    padding: 0px !important;
+}
+
+.modal-content .card {
+    margin: 0px !important;
+}
+
+.modal-footer {
+    background-color: #276471 !important;
+}
+
+
+/*Navbar*/
+
+.mbknav {
+    background-color: black;
+}
+
+.full-btn {
+    width: 100% !important;
+}
+
+.margint-10 {
+    margin-top: 10px !important;
+}
+
+.blue {
+    background-color: #2C8BEB !important;
+}
+
+.tabs .tab a {
+    color: dimgray !important;
+}
+
+
+/*Colores del loader*/
+
+.base1,
+.base2 {
+    background: #3E92CC !important;
+}
+
+.base1 .red,
+.base2 .red {
+    background: black !important;
+}
+
+
+/*Label search datatable*/
+
+#example_filter label {
+    font-size: 1.2rem !important;
+}
+
+#example_paginate span a {
+    padding: 0px !important;
+    line-height: 15px !important;
+    /*background-color: black !important;*/
+}
+
+
+/*Pagina activa en la datatable*/
+
+.current {
+    background-color: black !important;
+}
+
+
+/*Paginacion de la datatable*/
+
+.dataTables_paginate {
+    padding-right: 100px !important;
+}
+
+.paginate_button {
+    font-size: 1rem !important;
+}
+
+.subactive {
+    background-color: lightgray !important;
+}
+
+.side-nav ul li:focus,
+.side-nav.fixed ul li:focus {
+    background-color: lightgray !important;
+}
+
+
+/*Ancho de las columnas en la datatable*/
+
+.dataTable td,
+.dataTable th {
+    padding: 3px !important;
+}
+
+
+/*Botones de la datatable*/
+
+.btnTableDelete,
+.btnTableEdit,
+.btnTableApprove {
+    height: 25px !important;
+    line-height: 25px !important;
+    padding: 5px !important;
+}
+
+.btnTableEdit {
+    /*background-color: black !important;*/
+    /*background-color: white !important;*/
+    /*color: black !important;*/
+    background-color: none !important;
+    color: #3E92CC !important;
+}
+
+.btnTableDelete {
+    /*background-color: white !important;    */
+    /*background-color: #E54B4B !important;*/
+    color: #E54B4B !important;
+    background-color: none !important;
+    /*color: #c0392b !important;*/
+}
+
+.btnTableDeleteOrder {
+    color: #E54B4B !important;
+}
+
+.btnTableEditOrder {
+    color: #3E92CC !important;
+}
+
+
+/*FAB*/
+
+.btn-floating {
+    width: 65px !important;
+    height: 65px !important;
+}
+
+.icon-add {
+    line-height: 65px !important;
+}
+
+
+/*Login*/
+
+.div-login {
+    padding: 5% 5% !important;
+}
+
+.onClickRecoverAdmin,
+.onClickLoginAdmin {
+    width: 100% !important;
+    margin-bottom: 10px !important;
+    background: black !important;
+    /*padding: 25px 0px !important;*/
+}
+
+
+/*Administrador*/
+
+
+/*Badged*/
+
+span.badge.new {
+    background-color: #3E92CC !important;
+}
+
+
+/*Modal footer boton padding*/
+
+.onSave {
+    margin-right: 15px !important;
+}
+
+.onBack {
+    background-color: #3E92CC !important;
+}
+
+.modal-footer {
+    background-color: black !important;
+    padding-bottom: 0px !important;
+}
+
+.card-content .row {
+    /*padding: 0px !important;*/
+}
+
+
+/*Oculta el dia en el datepicker*/
+
+.picker__date-display {
+    display: none !important;
+}
+
+.tabs .indicator {
+    background-color: #2C8BEB !important;
+}

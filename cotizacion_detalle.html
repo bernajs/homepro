@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cotizaciones</title>
+    <meta charset="UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="admin/assets/plugins/sweetalert/sweetalert.css" media="screen,projection" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        .secondary-content {
+            margin-top: 12px !important;
+        }
+        
+        .icon-msj {
+            margin-top: 15px !important;
+        }
+        
+        a {
+            color: black !important;
+        }
+        
+        h6 {
+            /*font-weight: bold !important;*/
+            font-size: 15px !important;
+        }
+        
+        .fecha-atn {
+            font-size: 12px !important;
+        }
+        
+        .card-content {
+            padding-top: 0px !important;
+            padding-bottom: 0px !important;
+        }
+        
+        .container {
+            width: 100%;
+        }
+        /**/
+        
+        .collection {
+            margin-top: 155px !important;
+        }
+        
+        #titulo {
+            word-wrap: break-word !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <div class="row">
+                <div class="col s12">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Descripción de la cotización</span>
+                            <p id="titulo">Cargando...</p>
+                            <div class="fecha-atn right-align txt-gris-claro">Fecha: </div>
+                        </div>
+                        <div class="card-action color-azul txt-blanco">
+                            <h6>Lista de negocios</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="collection">
+        </ul>
+    </div>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="admin/assets/plugins/jquery/jquery-2.2.0.min.js"></script>
+    <script type="text/javascript" src="admin/assets/plugins/sweetalert/sweetalert.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+
+    <script>
+        Customer.getCotizacionDetalle();
+
+        // var height = $('.header').height();
+        // height += 40;
+        // $('.collection').css({
+        //     'margin-top': "'" + height + "px !important;'"
+        // })
+        // console.log(height);
+        // console.log("'" + height + "px !important;'");
+    </script>
+</body>
+
+</html>

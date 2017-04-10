@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html>
+
+
+
+<head>
+
+    <title>Cotizaciones</title>
+
+    <meta charset="UTF-8">
+
+    <!--Import Google Icon Font-->
+
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">   
+    <meta http-equiv="Pragma" content="no-cache">   
+    <meta http-equiv="Expires" content="-1">
+
+    <!--Import materialize.css-->
+
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+
+    <link type="text/css" rel="stylesheet" href="css/custom.css" media="screen,projection" />
+
+    <link type="text/css" rel="stylesheet" href="admin/assets/plugins/sweetalert/sweetalert.css" media="screen,projection" />
+
+
+
+    <!--Let browser know website is optimized for mobile-->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+</head>
+
+
+
+<body>
+
+    <div class="row buscar-blue">
+
+        <div class="input-field col s10 offset-s1 buscar">
+
+            <input id="buscar" type="text" class="validate">
+
+            <label for="buscar">Buscar</label>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+
+
+
+    </div>
+
+
+
+    <!--Import jQuery before materialize.js-->
+
+    <script type="text/javascript" src="admin/assets/plugins/jquery/jquery-2.2.0.min.js"></script>
+
+    <script type="text/javascript" src="admin/assets/plugins/sweetalert/sweetalert.min.js"></script>
+
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+
+    <script type="text/javascript" src="js/app.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $('select').material_select();
+
+        });
+
+    </script>
+
+    <script>
+
+        Customer.getCotizaciones();
+
+    </script>
+
+</body>
+
+
+
+</html>

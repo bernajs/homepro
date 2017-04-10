@@ -1,0 +1,61 @@
+[22-Mar-2017 11:00:38 America/Mexico_City] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; db has a deprecated constructor in /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.db.php on line 4
+[22-Mar-2017 11:00:38 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_connect() in /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.db.php:16
+Stack trace:
+#0 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.helper.php(28): db->CONNECT()
+#1 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.service.php(333): Helper->execute('SELECT * FROM u...')
+#2 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/_ctrl/ctrl.service.php(396): Service->isRegistered('luis@gmaill.com', 'vjvjmmrh1')
+#3 {main}
+  thrown in /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.db.php on line 16
+[22-Mar-2017 11:01:03 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_connect() in /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.db.php:16
+Stack trace:
+#0 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.helper.php(28): db->CONNECT()
+#1 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.service.php(333): Helper->execute('SELECT * FROM u...')
+#2 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/_ctrl/ctrl.service.php(396): Service->isRegistered('luis@gmaill.com', 'vjvjmmrh1')
+#3 {main}
+  thrown in /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.db.php on line 16
+[22-Mar-2017 11:03:19 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_connect() in /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.db.php:16
+Stack trace:
+#0 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.helper.php(28): db->CONNECT()
+#1 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.service.php(333): Helper->execute('SELECT * FROM u...')
+#2 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/_ctrl/ctrl.service.php(396): Service->isRegistered('luis@gmaill.com', 'vjvjmmrh1')
+#3 {main}
+  thrown in /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.db.php on line 16
+[22-Mar-2017 11:04:06 America/Mexico_City] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; db has a deprecated constructor in /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.db.php on line 4
+[22-Mar-2017 11:04:06 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_connect() in /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.db.php:16
+Stack trace:
+#0 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.helper.php(28): db->CONNECT()
+#1 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.service.php(373): Helper->execute('SELECT * FROM c...')
+#2 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/_ctrl/ctrl.service.php(213): Service->getCiudades()
+#3 {main}
+  thrown in /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.db.php on line 16
+[22-Mar-2017 11:04:26 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_connect() in /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.db.php:16
+Stack trace:
+#0 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.helper.php(28): db->CONNECT()
+#1 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.service.php(333): Helper->execute('SELECT * FROM u...')
+#2 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/_ctrl/ctrl.service.php(396): Service->isRegistered('mty@gmail.com', 'vjvjmmrh1')
+#3 {main}
+  thrown in /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.db.php on line 16
+[22-Mar-2017 11:04:33 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_connect() in /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.db.php:16
+Stack trace:
+#0 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.helper.php(28): db->CONNECT()
+#1 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.service.php(333): Helper->execute('SELECT * FROM u...')
+#2 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/_ctrl/ctrl.service.php(396): Service->isRegistered('mty@gmail.com', 'vjvjmmrh1')
+#3 {main}
+  thrown in /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.db.php on line 16
+[22-Mar-2017 11:10:57 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_connect() in /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.db.php:16
+Stack trace:
+#0 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.helper.php(28): db->CONNECT()
+#1 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.service.php(333): Helper->execute('SELECT * FROM u...')
+#2 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/_ctrl/ctrl.service.php(396): Service->isRegistered('luis@gmail.com', 'vjvjmmrh1')
+#3 {main}
+  thrown in /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.db.php on line 16
+[22-Mar-2017 11:22:10 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_connect() in /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.db.php:16
+Stack trace:
+#0 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.helper.php(28): db->CONNECT()
+#1 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.service.php(373): Helper->execute('SELECT * FROM c...')
+#2 /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/_ctrl/ctrl.service.php(213): Service->getCiudades()
+#3 {main}
+  thrown in /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.db.php on line 16
+[22-Mar-2017 12:31:10 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; db has a deprecated constructor in /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.db.php on line 5
+[22-Mar-2017 12:31:14 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; db has a deprecated constructor in /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.db.php on line 5
+[22-Mar-2017 12:31:49 America/Chicago] PHP Deprecated:  Methods with the same name as their class will not be constructors in a future version of PHP; db has a deprecated constructor in /mnt/stor7-wc2-dfw1/527264/1033529/app.homepro.mx/web/content/admin/_class/class.db.php on line 5

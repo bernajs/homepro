@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Perfil</title>
+  <meta charset="UTF-8">
+  <!--Import Google Icon Font-->
+  <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">   
+  <meta http-equiv="Pragma" content="no-cache">   
+  <meta http-equiv="Expires" content="-1">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+  <link type="text/css" rel="stylesheet" href="css/custom.css" media="screen,projection" />
+  <link type="text/css" rel="stylesheet" href="admin/assets/plugins/sweetalert/sweetalert.css" media="screen,projection" />
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    .guardar {
+      margin-bottom: 25px !important;
+    }
+    
+    .add {
+      margin-top: 15px !important;
+    }
+    
+    .container .row {
+      margin-left: -.5rem !important;
+      margin-right: -.5rem !important;
+    }
+    
+    .container {
+      margin-top: 50px !important;
+    }
+    
+    .direcciones .row .col {
+      margin-top: 20px !important;
+    }
+    
+    h5 {
+      margin-top: 0px !important;
+    }
+  </style>
+
+</head>
+
+<body>
+  <ul class="tabs header">
+    <li class="tab col s6"><a href="#perfil">Perfil</a></li>
+    <li class="tab col s6"><a href="#direcciones">Direcciones</a></li>
+  </ul>
+  <div class="container">
+    <div class="perfil" id="perfil">
+      <div class="row">
+        <form action="" id="frmPerfil" name="frmPerfil" class="col s12 margint-20">
+          <!--<h5>Perfil</h5>-->
+          <div class="row" style="margin-bottom:0px;">
+            <div class="input-field col s12">
+              <input id="nombre" name="nombre" type="text" value="" class="validate">
+              <label for="nombre" class="lbl-active">Nombre</label>
+              <span id="alert-nombre" class="invalid"></span>
+            </div>
+            <div class="input-field col s12">
+              <input id="correo" name="correo" type="email" value="" class="validate">
+              <label for="correo" class="lbl-active">Correo</label>
+            </div>
+            <div class="input-field col s12">
+              <select id="id_ciudad" name="id_ciudad">
+              <option value="1">Ciudad</option>
+            </select>
+              <label>Seleccione su ciudad</label>
+            </div>
+            <div class="input-field col s12">
+              <input id="movil" name="movil" type="number" value="" class="validate">
+              <label for="movil" class="lbl-active">Teléfono</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="contrasena" name="contrasena" type="password" class="validate">
+              <label for="contrasena" class="lbl-active">Contraseña</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="confirmar_contrasena" name="confirmar_contrasena" type="password" class="validate">
+              <label for="confirmar_contrasena" class="lbl-active">Confirmar contraseña</label>
+            </div>
+          </div>
+        </form>
+        <div class="row">
+          <div class="col s12 guardar">
+            <a class="waves-light waves-effect btn blue onUpdateProfile full-btn margint-20">Guardar</a>
+          </div>
+          <div class="col s12 center-align marginb-20">
+            <a href="logout.html" class="txt-azul-oscuro">Cerrar sesión</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="direcciones" id="direcciones">
+      <div class="row">
+        <div class="col s8">
+          <h5>Direcciones</h5>
+        </div>
+        <div class="col s2 offset-s2 add">
+          <a href="agregar_direccion.html"><i class="material-icons">add_circle</i></a>
+        </div>
+      </div>
+      <div class="lista-direcciones"></div>
+    </div>
+  </div>
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="admin/assets/plugins/jquery/jquery-2.2.0.min.js"></script>
+  <script type="text/javascript" src="admin/assets/plugins/sweetalert/sweetalert.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+  <script>
+    $(document).ready(function (e) {
+      checkSession();
+      Customer.getUsuario();
+    });
+  </script>
+</body>
+
+</html>
