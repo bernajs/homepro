@@ -828,7 +828,7 @@ Customer = {
                         <img src="admin/uploads/servicios/servicio_' + element.id + '_' + element.imagen + '" alt="">\
                         </div>\
                         <div class="card-action servicio" style="background-color: ' + element.color + '">\
-                        <b class="txt-blanco">' + element.servicio + '</b><span class="cantidad"> ' + cantidad + '</span>\
+                        <b class="txt-blanco">' + element.servicio + '</b><span class="cantidad" style="background-color: ' + element.color + '"> ' + cantidad + '</span>\
                         </div>\
                         </div>\
                         </a>\
