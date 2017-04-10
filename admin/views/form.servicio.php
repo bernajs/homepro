@@ -35,9 +35,9 @@ if(isset($_GET['id'])){
                 <label data-error="" for="servicio">Servicio</label>
               </div>
               <div class="input-field col s6">
-                <i class="material-icons prefix">account_circle</i>
-                <input id="color" type="text" name="color" class="isRequired" value="<?php echo $data['color']; ?>">
-                <label data-error="" for="color">Color</label>
+                <!--<i class="material-icons prefix">account_circle</i>-->
+                <span data-error="" for="color">Color</span>
+                <input id="color" type="color" name="color" class="isRequired" value="<?php echo $data['color']; ?>">
               </div>
             </div>
             <div class="file-field input-field">
@@ -45,7 +45,7 @@ if(isset($_GET['id'])){
                 <!--<div class="dz-default dz-message"><span><img src="assets/images/upload.png" alt=""></span></div>-->
               </div>
             </div>
-            <input type="hidden" name="img" id="img" value="<?php echo $data['img']; ?>">
+            <input type="hidden" name="img" id="img" value="<?php echo $data['imagen']; ?>">
             <input type="hidden" id="id" name="id" value="<?php echo $id; ?>" />
             <input type="hidden" id="status" name="status" value="1" />
           </form>
@@ -96,21 +96,24 @@ if(isset($_GET['id'])){
     });
 
     myDropzone.on("complete", function(file) {
-      if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
-        alert('Los archivos se subieron correctamente.');
-      }
+      // if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+      // }
     });
 
     function upload(id) {
-      id_servicio = id;
-      myDropzone.processQueue();
+      // if (myDropzone.files.length) {
+        // console.log('si entra');
+        id_servicio = id;
+        myDropzone.processQueue();
+      // }
     }
 
     function change_photo() {
-      console.log(' si etr');
       <?php if($data['imagen']): ?>
       $('.dz-default span').empty().html('<img src="uploads/servicios/<?php echo $img; ?>" alt="" style="width: 20%; height:auto;"/>');
       <?php endif ?>
     }
+
+    // $('#color').spectrum();
     // });
   </script>

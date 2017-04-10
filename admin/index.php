@@ -39,6 +39,7 @@ if(isset($_GET['call'])){
     <!-- Theme Styles -->
     <link href="assets/css/alpha.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/spectrum.css" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
@@ -205,6 +206,7 @@ if(isset($_GET['call'])){
       <script src="assets/js/pages/table-data.js"></script>
       <script src="assets/plugins/chart.js/chart.min.js"></script>
       <script src="js/app.js" type="text/javascript"></script>
+      <script src="assets/js/spectrum.js" type="text/javascript"></script>
 
 
       <!--Dropzone-->
