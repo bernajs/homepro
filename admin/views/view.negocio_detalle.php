@@ -30,6 +30,8 @@ if(isset($_GET['id'])){
     $id_negocio = $id;
     $lastSuscripciones = $objNegocio->getLastSuscripciones($id);
     $suscripciones = $objNegocio->getSuscripciones($id);
+    $estadisticas = $objNegocio->getEstadisticas($id);
+    $estadisticas = $estadisticas[0];
     
     
     //Ultimas 5 suscripciones
@@ -294,164 +296,195 @@ if(isset($_GET['id'])){
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div id="test2">
-    <div class="row">
-      <div class="col s12">
-        <div class="page-title">Arrastre el documento</div>
+
+      <div class="card col l5 m5 s12 offset-l1 offset-m1 tbl_renovaciones hoverable">
+        <div class="card-content">
+          <div class="row">
+            <canvas id="myChart" width="50%" height="35%"></canvas>
+          </div>
+        </div>
       </div>
-      <div class="col s12 m12 l12">
-        <div class="card">
-          <div class="card-content">
-            <div class="dropzone" id="dz_document">
-              <!--<div class="dz-default dz-message"><span><img src="assets/images/upload.png" alt=""></span></div>-->
+    </div>
+    <div id="test2">
+      <div class="row">
+        <div class="col s12">
+          <div class="page-title">Arrastre el documento</div>
+        </div>
+        <div class="col s12 m12 l12">
+          <div class="card">
+            <div class="card-content">
+              <div class="dropzone" id="dz_document">
+                <!--<div class="dz-default dz-message"><span><img src="assets/images/upload.png" alt=""></span></div>-->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col s12">
+          <a class="waves-effect btn blue right upload">Subir</a>
+        </div>
+        <div class="col s12 l4 m6">
+          <h5>Listado de documentos</h5>
+          <div class="card">
+            <div class="card-content">
+              <?php if($lista_documentos): ?>
+                <table class="display responsive-table highlight">
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Acción</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php echo $lista_documentos; ?>
+                  </tbody>
+                </table>
+                <?php else: ?>
+                  <h6>Este negocio no tiene nigún documento.</h6>
+                  <?php endif ?>
             </div>
           </div>
         </div>
       </div>
-      <div class="col s12">
-        <a class="waves-effect btn blue right upload">Subir</a>
-      </div>
-      <div class="col s12 l4 m6">
-        <h5>Listado de documentos</h5>
-        <div class="card">
-          <div class="card-content">
-            <?php if($lista_documentos): ?>
+    </div>
+    <div id="test3">
+      <div class="row">
+        <div class="col s12">
+          <div class="page-title">Suscripciones</div>
+        </div>
+        <div class="col s12 m12 l12">
+          <div class="card">
+            <div class="card-content">
               <table class="display responsive-table highlight">
                 <thead>
                   <tr>
-                    <th>Nombre</th>
-                    <th>Acción</th>
+                    <th>Fecha inicio</th>
+                    <th>Fecha fin</th>
+                    <th>Comentarios</th>
+                    <th>Cancelar suscripción</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php echo $lista_documentos; ?>
+                  <?php echo $tSuscripciones ?>
                 </tbody>
               </table>
-              <?php else: ?>
-                <h6>Este negocio no tiene nigún documento.</h6>
-                <?php endif ?>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div id="test3">
-    <div class="row">
-      <div class="col s12">
-        <div class="page-title">Suscripciones</div>
-      </div>
-      <div class="col s12 m12 l12">
-        <div class="card">
-          <div class="card-content">
-            <table class="display responsive-table highlight">
-              <thead>
-                <tr>
-                  <th>Fecha inicio</th>
-                  <th>Fecha fin</th>
-                  <th>Comentarios</th>
-                  <th>Cancelar suscripción</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php echo $tSuscripciones ?>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
-  <!-- MODAL FORM -->
-  <div id="modal_form" class="modal"></div>
+    <!-- MODAL FORM -->
+    <div id="modal_form" class="modal"></div>
 
-  <script src="assets/plugins/jquery/jquery-2.2.0.min.js"></script>
+    <script src="assets/plugins/jquery/jquery-2.2.0.min.js"></script>
 
-  <script src="assets/plugins/dropzone/dropzone.min.js"></script>
+    <script src="assets/plugins/dropzone/dropzone.min.js"></script>
+    <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script>
 
-  <script>
-    // var id = <?php echo $id ?>;
-    Dropzone.autoDiscover = false;
-    Dropzone.options.myAwesomeDropzone = false;
-    $(document).ready(function() {
-      var myDropzone = new Dropzone("div#dz_document", {
-        url: "uploads/upload_document.php",
-        addRemoveLinks: true,
-        dictRemoveFile: 'Eliminar',
-        autoProcessQueue: false,
-        maxFilesize: 10,
-        parallelUploads: 10
-      });
-      // Dropzone.autoDiscover = false;
-      $('.upload').on('click', function(e) {
-        // e.preventDefault();
-        myDropzone.processQueue();
-      });
-      myDropzone.on('sending', function(file, xhr, formData) {
-        formData.append('nid', <?php echo $id ?>);
+    <script>
+      // var id = <?php echo $id ?>;
+      Dropzone.autoDiscover = false;
+      Dropzone.options.myAwesomeDropzone = false;
+      $(document).ready(function() {
+        var myDropzone = new Dropzone("div#dz_document", {
+          url: "uploads/upload_document.php",
+          addRemoveLinks: true,
+          dictRemoveFile: 'Eliminar',
+          autoProcessQueue: false,
+          maxFilesize: 10,
+          parallelUploads: 10
+        });
+        // Dropzone.autoDiscover = false;
+        $('.upload').on('click', function(e) {
+          // e.preventDefault();
+          myDropzone.processQueue();
+        });
+        myDropzone.on('sending', function(file, xhr, formData) {
+          formData.append('nid', <?php echo $id ?>);
+        });
+
+        myDropzone.on("complete", function(file) {
+          if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+            alert('Los archivos se subieron correctamente.')
+            location.href = '#test2';
+            location.reload();
+          }
+        });
       });
 
-      myDropzone.on("complete", function(file) {
-        if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
-          alert('Los archivos se subieron correctamente.')
-          location.href = '#test2';
-          location.reload();
+
+      $('.deleteDocument').on('click', function(e) {
+        var documento = $(this).text();
+        var id = <?php echo $id ?>;
+        documento = documento.replace('delete', '');
+        swal({
+          title: "",
+          text: "Por favor confirme la eliminación del documento",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Eliminar",
+          closeOnConfirm: false
+        }, function() {
+          $.ajax({
+            dataType: 'json',
+            data: {
+              exec: "eliminar",
+              documento: documento,
+              id: id
+            },
+            type: 'POST',
+            url: 'uploads/delete_document.php',
+            success: function(r) {
+              if (r.status == 202) {
+                swal({
+                  title: "",
+                  text: "El documento se ha eliminado correctamente.",
+                  type: "success",
+                  confirmButtonText: "Aceptar",
+                  confirmButtonColor: "#2C8BEB"
+                }, function(isConfirm) {
+                  if (isConfirm) {
+                    location.href = '#test2';
+                    location.reload();
+                  }
+                });
+              } else {
+                swal({
+                  title: "",
+                  text: "Hubo un error, por favor intentalo de nuevo.",
+                  type: "error",
+                  confirmButtonText: "Aceptar",
+                  confirmButtonColor: "#2C8BEB"
+                });
+              }
+            }
+          })
+
+        });
+      });
+    </script>
+
+
+    <script>
+      var cotizaciones = <?php echo($estadisticas['cotizaciones']); ?>;
+      var btn_llamar = <?php echo($estadisticas['btn_llamar']); ?>;
+      var ver_perfil = <?php echo($estadisticas['ver_perfil']); ?>;
+      var ctx = document.getElementById("myChart").getContext('2d');
+      // Chart.defaults.global.legend.display = false;
+      var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ["Vista perfil", "Llamadas", "Cotizaciones", ],
+          datasets: [{
+            backgroundColor: [
+              "#2196F3",
+              "#2ECC71",
+              "#91C0E7",
+            ],
+            data: [cotizaciones, btn_llamar, ver_perfil]
+          }]
         }
       });
-    });
-
-
-    $('.deleteDocument').on('click', function(e) {
-      var documento = $(this).text();
-      var id = <?php echo $id ?>;
-      documento = documento.replace('delete', '');
-      swal({
-        title: "",
-        text: "Por favor confirme la eliminación del documento",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Eliminar",
-        closeOnConfirm: false
-      }, function() {
-        $.ajax({
-          dataType: 'json',
-          data: {
-            exec: "eliminar",
-            documento: documento,
-            id: id
-          },
-          type: 'POST',
-          url: 'uploads/delete_document.php',
-          success: function(r) {
-            if (r.status == 202) {
-              swal({
-                title: "",
-                text: "El documento se ha eliminado correctamente.",
-                type: "success",
-                confirmButtonText: "Aceptar",
-                confirmButtonColor: "#2C8BEB"
-              }, function(isConfirm) {
-                if (isConfirm) {
-                  location.href = '#test2';
-                  location.reload();
-                }
-              });
-            } else {
-              swal({
-                title: "",
-                text: "Hubo un error, por favor intentalo de nuevo.",
-                type: "error",
-                confirmButtonText: "Aceptar",
-                confirmButtonColor: "#2C8BEB"
-              });
-            }
-          }
-        })
-
-      });
-    });
-  </script>
+    </script>

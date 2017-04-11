@@ -10,6 +10,7 @@ switch($_POST['exec']) {
             set_status($data['status'])->
             set_color($data['color'])->
             set_imagen($data['img'])->
+            set_tags($data['tags'])->
             set_created_at(date("Y-m-d H:i:s"))->
             db('insert');
             $result['status'] = 202;
@@ -25,6 +26,7 @@ case "update":
     set_status($data['status'])->
     set_imagen($data['img'])->
     set_color($data['color'])->
+    set_tags($data['tags'])->
     set_modified_at(date("Y-m-d H:i:s"))->
     set_id($data['id'])->
     db('update');

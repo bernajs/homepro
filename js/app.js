@@ -816,6 +816,7 @@ Customer = {
             function(r) {
                 if (r.status == 202) {
                     var data = r.data;
+                    console.log(r.data);
                     var buffer = '';
                     var cantidad = '';
                     data.forEach(function(element) {
@@ -832,6 +833,7 @@ Customer = {
                         </div>\
                         </div>\
                         </a>\
+                        <p class="tags" style="display: none;">'+element.servicio + ', ' + element.tags+'</p>\
                         </div>';
                         $('.lista-servicios').html(buffer);
                     });
@@ -841,7 +843,10 @@ Customer = {
                     //     var colorB = Math.floor((Math.random() * 256));
                     //     $(this).css("background-color", "rgb(" + colorR + "," + colorG + "," + colorB + ")");
                     // });
-
+                        var options = {
+                            valueNames: ['tags']
+                        };
+                        var hackerList = new List('data', options);
 
                 } else {
                     $('#data').empty().html('No hay ningún servicio');

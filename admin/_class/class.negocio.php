@@ -176,5 +176,10 @@ public function isDuplicate($correo){
     $result = $this->execute($query);
     if(count($result)>0){ return true; }else{ return false; }
 }
+
+public function getEstadisticas($id){
+    $query = 'SELECT * FROM negocio_estadistica WHERE id_negocio = '.$id;
+    return $this->execute($query);
+}
 }
 ?>

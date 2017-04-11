@@ -66,7 +66,6 @@ public function getData($id = NULL){
 
 public function get_permisos($id){
     $query = 'SELECT permisos FROM admin WHERE id = '.$id;
-    echo $query;
     return $this->execute($query);
 }
 public function isDuplicate($correo){

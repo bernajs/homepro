@@ -9,6 +9,7 @@ class Servicio extends Helper {
     var $created_at;
     var $status;
     var $modified_at;
+    var $tags;
     var $id;
     
     public function __construct(){ $this->sql = new dbo(); }
@@ -17,12 +18,13 @@ class Servicio extends Helper {
         switch($key){
             case "insert":
                 $this->status = 1;
-                $query = "INSERT INTO cat_servicio (created_at,servicio,imagen,color,status)
+                $query = "INSERT INTO cat_servicio (created_at,servicio,imagen,color,tags,status)
                 VALUES (
                 '".$this->created_at."',
                 '".$this->servicio."',
                 '".$this->imagen."',
                 '".$this->color."',
+                '".$this->tags."',
                 '".$this->status."'
                 )";
                 break;
@@ -33,6 +35,7 @@ class Servicio extends Helper {
                 status='".$this->status."',
                 imagen='".$this->imagen."',
                 color='".$this->color."',
+                tags='".$this->tags."',
                 modified_at='".$this->modified_at."'
                 WHERE id=".$this->id;
                 break;

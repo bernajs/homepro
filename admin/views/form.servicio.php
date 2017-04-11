@@ -4,6 +4,7 @@ $data['id'] = '';
 $data['servicio'] = '';
 $data['color'] = '';
 $data['imagen'] = '';
+$data['tags'] = '';
 $action = "save";
 $select_options = "";
 $titulo ="Agregar servicio";
@@ -16,6 +17,7 @@ if(isset($_GET['id'])){
     $data['servicio'] = $item[0]['servicio'];
     $data['color'] = $item[0]['color'];
     $data['imagen'] = $item[0]['imagen'];
+    $data['tags'] = $item[0]['tags'];
     $action = "update";
     $img = 'servicio_'.$id.'_'.$data['imagen'];
 }
@@ -38,6 +40,11 @@ if(isset($_GET['id'])){
                 <!--<i class="material-icons prefix">account_circle</i>-->
                 <span data-error="" for="color">Color</span>
                 <input id="color" type="color" name="color" class="isRequired" value="<?php echo $data['color']; ?>">
+              </div>
+              <div class="input-field col s12">
+                <i class="material-icons prefix">account_circle</i>
+                <input  type="text" id="tags" name="tags" class="isRequired materialize-textarea" value="<?php echo $data['tags']; ?>"></textarea>
+                <label data-error="" for="tags">Tags</label>
               </div>
             </div>
             <div class="file-field input-field">
@@ -102,9 +109,9 @@ if(isset($_GET['id'])){
 
     function upload(id) {
       // if (myDropzone.files.length) {
-        // console.log('si entra');
-        id_servicio = id;
-        myDropzone.processQueue();
+      // console.log('si entra');
+      id_servicio = id;
+      myDropzone.processQueue();
       // }
     }
 
