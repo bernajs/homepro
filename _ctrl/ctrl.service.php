@@ -38,6 +38,8 @@ case "getNotificaciones":
     $notificaciones = $obj->getNotifiaciones($data);
     if ($notificaciones) {
         $result['notificaciones'] = count($notificaciones);
+    }else{
+        $result['notificaciones'] = 0;
     }
     echo json_encode($result);
     break;

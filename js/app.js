@@ -816,7 +816,6 @@ Customer = {
             function(r) {
                 if (r.status == 202) {
                     var data = r.data;
-                    console.log(r.data);
                     var buffer = '';
                     var cantidad = '';
                     data.forEach(function(element) {
@@ -1289,16 +1288,16 @@ Customer = {
     },
     getNotificaciones: function(e){
         uid = getUid();
-        var notificaciones = 0;
+        var notificaciones;
         Service.execute("_ctrl/ctrl.service.php",
         {
             exec: 'getNotificaciones',
             data: uid
         }, function(r){
-            if(r.notificaciones){
+            console.log(r);
+            if(r.notificaciones > 0){
                 notificaciones = r.notificaciones;
             }
-            console.log(r);
             $('.notificaciones').html(notificaciones);
         });
     },
