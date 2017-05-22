@@ -245,10 +245,15 @@ Negocio = {
                             return new Date(b.modified_at) - new Date(a.modified_at);
                         });
                         historial.forEach(function(element) {
-                            fecha = new Date(element.modified_at);
+                            element.modified_at = element.modified_at.replace(/-/g, '/');
+                            // fecha = new Date(element.modified_at.replace(' ', 'T'));
+                            fecha = new Date(element.modified_at.slice(0, 10));
                             var hoy = new Date();
+                            console.log(fecha);
+                            console.log(hoy);
                             var dif = (hoy.getDate() - fecha.getDate());
                             var mes = (hoy.getMonth() - fecha.getMonth());
+                            console.log(dif);
                             if (dif == 0 && mes == 0) { dia = 'Hoy'; } else if (dif == 1 && mes == 0) { dia = 'Ayer'; } else if (dif == 2 && mes == 0) { dia = 'Antier'; } else { dia = fecha.getDate() + '/' + (meses[fecha.getMonth()]) + '/' + fecha.getFullYear(); }
                             if (element.status == 0) { notificacion += '<span class="new badge color-rojo">Nueva</span>'; }
                             if (element.mensaje >= 0) {
@@ -390,22 +395,23 @@ Negocio = {
                         var mes = hoy.getMonth();
                         var fecha;
                         var minuto;
+                        console.log(data);
                         data.forEach(function(element) {
-                            dia = new Date(element.created_at);
+                            console.log(element);
+                            // dia = new Date(element.created_at.replace(' ', 'T'));
+                            dia = new Date(element.created_at.slice(0, 10));
                             dif -= dia.getDate();
                             mes -= dia.getMonth();
                             if (dif == 0 && mes == 0) {
                                 fecha = 'Hoy';
-                                console.log("es hoy" + fecha);
                             } else if (dif == 1 && mes == 0) {
                                 fecha = 'Ayer';
-                                console.log("es ayer" + fecha);
                             } else if (dif == 2 && mes == 0) {
                                 fecha = 'Antier';
-                                console.log("es antier" + fecha);
                             } else { fecha = (dia.getDate()) + '/' + (meses[dia.getMonth()]) + '/' + dia.getFullYear(); }
                             if (dia.getMinutes() < 10) { minuto = '0' + dia.getMinutes(); } else { minuto = dia.getMinutes(); }
-                            hora = dia.getHours() + ':' + minuto;
+                            // hora = dia.getHours() + ':' + minuto;
+                            hora = element.created_at.slice(11, 16);
                             if (fecha_anterior == dia.getDate() + '/' + dia.getMonth()) { fecha = ''; }
                             buffer += '<div class="col s6 offset-s3 center-align">\
                                             <span class="center-align txt-gris-claro">' + fecha + ' </span>\
@@ -419,7 +425,7 @@ Negocio = {
                                     <div class="col s4 offset-s8 right-align txt-gris-claro hora">' + hora + ' </div>\
                                     ';
                             } else {
-                                if (element.mensaje.includes('<img')) {
+                                if (element.mensaje.indexOf('<img') > -1) {
                                     element.mensaje = element.mensaje.replace('tmp', '../tmp')
                                     buffer += element.mensaje + '<div class="col s10 txt-gris-claro hora">' + hora + ' </div>\
                                     ';

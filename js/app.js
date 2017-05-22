@@ -372,19 +372,22 @@ Customer = {
                         var minuto;
                         console.log(data);
                         data.forEach(function(element) {
+                            console.log(element);
                             element.created_at = element.created_at.replace(/-/g, '/');
-                            dia = new Date(element.created_at);
+                            dia = new Date(element.created_at.slice(0, 10));
+                            // dia = new Date(element.created_at.slice(0, 10));
                             dif -= dia.getDate();
                             mes -= dia.getMonth();
                             if (dif == 0 && mes == 0) { fecha = 'Hoy'; } else if (dif == 1 && mes == 0) { fecha = 'Ayer'; } else if (dif == 2 && mes == 0) { fecha = 'Antier'; } else { fecha = (dia.getDate()) + '/' + (meses[dia.getMonth()]) + '/' + dia.getFullYear(); }
                             if (dia.getMinutes() < 10) { minuto = '0' + dia.getMinutes(); } else { minuto = dia.getMinutes(); }
-                            hora = dia.getHours() + ':' + minuto;
+                            // hora = dia.getHours() + ':' + minuto;
+                            hora = element.created_at.slice(11, 16);
                             if (fecha_anterior == dia.getDate() + '/' + dia.getMonth()) { fecha = ''; }
                             buffer += '<div class="col s6 offset-s3 center-align">\
                                             <span class="center-align txt-gris-claro">' + fecha + ' </span>\
                                         </div>';
                             if (element.tipo_usuario == 0) {
-                                if (element.mensaje.includes('<img')) {
+                                if (element.mensaje.indexOf('<img') > -1) {
                                     buffer += element.mensaje + '<div class="col s10 offset-s2 right-align txt-gris-claro hora">' + hora + ' </div>';
                                 } else {
                                     buffer += '<div class="col s10 offset-s2 color-azul div-msj">\
@@ -1241,7 +1244,7 @@ Customer = {
 
                         historial.forEach(function(element) {
                             element.modified_at = element.modified_at.replace(/-/g, '/');
-                            fecha = new Date(element.modified_at);
+                            fecha = new Date(element.modified_at.slice(0, 10));
                             var hoy = new Date();
                             var dif = (hoy.getDate() - fecha.getDate());
                             var mes = (hoy.getMonth() - fecha.getMonth());
@@ -1354,7 +1357,8 @@ Customer = {
                     negocios.forEach(function(element) {
                         fecha_atn = element.fecha_atn;
                         element.modified_at = element.modified_at.replace(/-/g, '/');
-                        fecha = new Date(element.modified_at);
+                        fecha = new Date(element.modified_at.slice(0, 10));
+                        console.log(fecha);
                         var hoy = new Date();
                         var dif = (hoy.getDate() - fecha.getDate());
                         var mes = (hoy.getMonth() - fecha.getMonth());
@@ -1585,6 +1589,7 @@ Customer = {
 $(window).load(function() {
     Customer.init();
     DAO.init();
+    isMobile();
 });
 
 
@@ -1669,6 +1674,15 @@ function checkSession(index) {
     if (localStorage.getItem('uid')) { return true; } else { if (!index) { location.href = 'index.html'; } }
     return false;
 }
+
+function isMobile(){
+    var moviles = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (!moviles) {
+        // location.href = "blank.html";
+    }
+    
+}
+
 
 
 // Note: This example requires that you consent to location sharing when
