@@ -14,11 +14,11 @@ class Service extends Helper {
     var $status;
     var $modified_at;
     var $id;
-    
+
     // Cotizacion
     var $id_negocio;
     var $id_cotizacion;
-    
+
     // Direccion
     var $calle;
     var $ciudad;
@@ -27,22 +27,22 @@ class Service extends Helper {
     var $cp;
     var $colonia;
     var $info;
-    
+
     // Chat
     var $mensaje;
     var $tipo_usuario;
     var $id_usuario;
     var $id_requerimiento;
-    
+
     // Registro
     var $zonas;
     var $servicios;
     var $telefono;
     var $informacion;
-    
-    
+
+
     public function __construct(){ $this->sql = new dbo(); }
-    
+
     public function db($key){
         switch($key){
             case "insert":
@@ -122,7 +122,7 @@ public function getNOID($id){
 }
 public function getNegocio($id){
     $query = 'SELECT * FROM negocio_suscripcion WHERE id_negocio = '.$id;
-    
+
     $suscripcion = $this->execute($query);
     if ($suscripcion) {
         $query = 'SELECT * FROM negocio INNER JOIN negocio_suscripcion ON negocio.id = negocio_suscripcion.id_negocio
@@ -202,6 +202,11 @@ public function getLlamadas($id){
 public function getChat($id_requerimiento, $id_negocio, $id_usuario){
     $query = 'SELECT * FROM chat WHERE id_requerimiento='.$id_requerimiento.' AND id_negocio ='.$id_negocio.' AND id_usuario ='.$id_usuario.' ORDER BY CAST(chat.created_at as datetime) ASC';
     return $this->execute($query);
+}
+
+public function getFechaAtendido($id){
+  $query = 'SELECT fecha_atn FROM requerimiento WHERE id = '.$id;
+  return $this->execute($query);
 }
 
 public function readChatNegocio($id_requerimiento, $id_negocio, $id_usuario){

@@ -33,8 +33,15 @@ case "getUsuario":
 }
 echo json_encode($result);
 break;
+case "deleteMsj":
+  $data=$_POST['data'];
+  $obj->set_id($data)->
+  db('deleteMsj');
+  $result['status'] = 202;
+  echo json_encode($result);
+break;
 case "getNotificaciones":
-    $data=$_POST['data'];
+  $data=$_POST['data'];
     $notificaciones = $obj->getNotifiaciones($data);
     if ($notificaciones) {
         $result['notificaciones'] = count($notificaciones);
@@ -174,7 +181,7 @@ case "enviarChat":
     // db('enviarChat');
     // $result['status'] = 202;
     // $result['redirect'] = 'perfil.html';
-    
+
     $data = $_POST['data'];
     $obj->set_id_usuario($data['id_usuario'])->
     set_id_negocio($data['id_negocio'])->
@@ -189,14 +196,14 @@ case "enviarChat":
     if($data['tipo_usuario'] == 1){
         $uoid = $obj->getUOID($data['id_usuario']);
         if($uoid){
-            $url = 'https://app.homepro.mx/chatmio.html?negocio='.$data['id_negocio'].'&requerimiento='.$data['id_requerimiento'].'&s='.$data['servicio'];
-            $push->sendMessage($uoid[0]['oid'],'Tienes un nuevo mensaje.', $url, NULL);
+            $url = 'https://app.homepro.mx/chat.html?negocio='.$data['id_negocio'].'&requerimiento='.$data['id_requerimiento'].'&s='.$data['servicio'];
+            $push->sendMessage($uoid[0]['oid'],'Tienes un nuevo mensaje.', $url, NULL, $uoid[0]['device']);
     }
 }else if($data['tipo_usuario'] == 0){
     $noid = $obj->getNOID($data['id_negocio']);
     if($noid){
         $url = 'https://app.homepro.mx/negocio/negocio_chat.html?usuario='.$data['id_usuario'].'&requerimiento='.$data['id_requerimiento'];
-        $push->sendMessage($noid[0]['oid'],'Tienes un nuevo mensaje.', $url, 1);
+        $push->sendMessage($noid[0]['oid'],'Tienes un nuevo mensaje.', $url, 1, $noid[0]['device']);
     }
 }
 echo json_encode($result);
@@ -302,6 +309,7 @@ case "negocioDetalles":
     $servicios = $obj->negocioServicios($id_negocio);
     $favorito = $obj->negocioFavorito($id_usuario, $id_negocio);
     $negocio = $obj->getNegocio($id_negocio);
+    // $descripcion = $obj->getDescripcion($id_negocio);
     $datos = array("testimonios"=>$testimonios, "zonas"=> $zonas, "servicios"=>$servicios,"favorito"=>$favorito, "negocio"=>$negocio);
     if($negocio){
         $obj->visita($data['id_negocio']);
@@ -369,7 +377,7 @@ case "cotizacion":
             set_modified_at(date("Y-m-d H:i:s"))->
             db('cotizacion');
             $obj->cotizacion_estadistica($negocios[$i]);
-            
+
             $obj->set_id_usuario($data['id_usuario'])->
             set_id_negocio($negocios[$i])->
             set_id_requerimiento($data['id_cotizacion'])->
@@ -378,8 +386,8 @@ case "cotizacion":
             set_status(0)->
             set_created_at(date("Y-m-d H:i:s"))->
             db('enviarChat');
-            
-            
+
+
             $noid = $obj->getNOID($negocios[$i]);
             if($noid){
                 $push->sendMessage($noid[0]['oid'],'Tienes una cotización nueva.', NULL, true);
@@ -463,7 +471,7 @@ case "registro":
     $uid = $obj->getLastInserted();
     $result['status'] = 202;
     $result['uid'] = $uid;
-    $result['redirect'] = 'process.html';
+    $result['redirect']='process.html?id='.$uid;
     $notify_data = ["usuario"=>$data['nombre']];
     $objNotify->send("homefix-nuevo-registro",$notify_data,$data['correo']);
     $result['status'] = 202;

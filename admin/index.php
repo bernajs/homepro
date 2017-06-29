@@ -133,10 +133,10 @@ if(isset($_GET['call'])){
             <?php if(in_array('negocio', $permisos)):?>
             <li class="no-padding <?php if($active == 'negocio'){echo 'active';} ?>"><a class="waves-effect waves-grey" href="index.php?call=negocio"><i class="material-icons">store</i>Negocios</a></li>
             <?php endif ?>
-            <?php if(in_array('usuario', $permisos)):?>            
+            <?php if(in_array('usuario', $permisos)):?>
             <li class="no-padding <?php if($active == 'usuario'){echo 'active';} ?>"><a class="waves-effect waves-grey" href="index.php?call=usuario"><i class="material-icons">supervisor_account</i>Usuarios</a></li>
             <?php endif ?>
-            <?php if(in_array('admin', $permisos)):?>            
+            <?php if(in_array('admin', $permisos)):?>
             <li class="no-padding <?php if($active == 'admin'){echo 'active';} ?>"><a class="waves-effect waves-grey" href="index.php?call=admin"><i class="material-icons">supervisor_account</i>Administradores</a></li>
             <?php endif ?>
             <?php if(in_array('voto_ciudad', $permisos)):?>
@@ -164,6 +164,7 @@ if(isset($_GET['call'])){
               <a class="collapsible-header waves-effect waves-grey <?php if($active == 'requerimiento' || $active == 'testimonio'){echo 'subactive';} ?>"><i class="material-icons">receipt</i>Reportes<i class="nav-drop-icon material-icons">keyboard_arrow_right</i></a>
               <div class="collapsible-body">
                 <ul>
+                  <li class="no-padding <?php if($active == 'chats'){echo 'subactive';} ?>"><a class="waves-effect waves-grey" href="index.php?call=chats"><i class="material-icons">forum</i>Chats</a></li>
                   <li class="no-padding <?php if($active == 'requerimiento'){echo 'subactive';} ?>"><a class="waves-effect waves-grey" href="index.php?call=requerimiento"><i class="material-icons">playlist_add</i>Requerimientos</a></li>
                   <li class="no-padding <?php if($active == 'testimonio'){echo 'subactive';} ?>"><a class="waves-effect waves-grey" href="index.php?call=testimonio"><i class="material-icons">subject</i>Testimonios</a></li>
                 </ul>

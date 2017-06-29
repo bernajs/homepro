@@ -3,10 +3,10 @@ class Push extends Helper {
     var $pid;
     var $body;
     var $url;
-    
+
     public function __construct(){ }
-    
-    public function sendMessage($pid,$body,$url = NULL, $negocio = null){
+
+    public function sendMessage($pid,$body,$url = NULL, $negocio = null, $device = null){
         if ($negocio) {
             $appid = NONESIGNAL_APPID;
             $restapikey = NONESIGNAL_APIKEY;
@@ -14,15 +14,19 @@ class Push extends Helper {
             $appid = ONESIGNAL_APPID;
             $restapikey = ONESIGNAL_APIKEY;
         }
-        
+
 
         #PLAYER ID
         $pid = array($pid);
         $content = array("en" => $body);
         if($url!=NULL){
+          if($device == 'ios'){
+            $fields = array('app_id' => $appid,'include_player_ids' => $pid,'contents' => $content, 'data' => array("chat" => $url));
+          }else if($device == 'android'){
             $fields = array('app_id' => $appid,'include_player_ids' => $pid,'contents' => $content,'url' => $url);
+          }
         }else{
-            $fields = array('app_id' => $appid,'include_player_ids' => $pid,'contents' => $content);
+            $fields = array('app_id' => $appid,'include_player_ids' => $pid,'contents' => $content, 'data' => array("chat" => "open"));
         }
         $fields = json_encode($fields);
         $ch = curl_init();
@@ -38,7 +42,5 @@ class Push extends Helper {
         file_put_contents('push.log', 'Send push to:'.$appid.' at: '.date('Y-m-d H:i:s').'msg: '.$content, FILE_APPEND);
         return $response;
     }
-    
-    
 }
 ?>

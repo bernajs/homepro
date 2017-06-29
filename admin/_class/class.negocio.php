@@ -17,9 +17,10 @@ class Negocio extends Helper {
     var $modified_at;
     var $lastInserted;
     var $oid;
-    
+    var $device;
+
     public function __construct(){ $this->sql = new dbo(); }
-    
+
     public function db($key){
         switch($key){
             case "insert":
@@ -36,11 +37,11 @@ class Negocio extends Helper {
                 '".$this->telefono."'
                 )";
                 $this->execute($query, true);
-                
+
                 $this->id = $this->lastInserted;
                 $query = 'INSERT INTO negocio_estadistica (id_negocio) VALUES ('.$this->id.')';
                 $this->execute($query);
-                
+
                 $zonas = (explode('|', $this->id_zona));
                 for ($i=0; $i < (count($zonas)); $i++) {
                     if ($zonas[$i] != '') {
@@ -52,7 +53,7 @@ class Negocio extends Helper {
                         $this->execute($query);
                 }
             }
-            
+
             $servicios = (explode('|', $this->id_servicio));
             for ($i=0; $i < (count($servicios)); $i++) {
                 if ($servicios[$i] != '') {
@@ -64,7 +65,7 @@ class Negocio extends Helper {
                     $this->execute($query);
                 }
             }
-            
+
             break;
         case "update":
             $query = "UPDATE negocio
@@ -77,10 +78,10 @@ class Negocio extends Helper {
             informacion='".$this->informacion."'
             WHERE id=".$this->id;
             $this->execute($query);
-            
+
             $query = "DELETE FROM negocio_zona WHERE id_negocio = ".$this->id;
             $this->execute($query);
-            
+
             $query = "DELETE FROM negocio_servicio WHERE id_negocio = ".$this->id;
             $this->execute($query);
             // print_r($id_zona);
@@ -116,7 +117,7 @@ class Negocio extends Helper {
         $this->execute($query);
         break;
     case "update_onesignal_id":
-        $query = "UPDATE negocio SET oid='".$this->oid."' WHERE id=".$this->id;
+        $query = "UPDATE negocio SET oid='".$this->oid."', device='".$this->device."' WHERE id=".$this->id;
         $this->execute($query);
         break;
 }
@@ -130,7 +131,7 @@ $this->execute($query,$lid); }
 public function getLastInserted(){ return $this->lastInserted; }
 
 public function getNegocios($id = NULL){
-    $query = "SELECT * FROM negocio WHERE id > 0 AND status <> 0";
+    $query = "SELECT * FROM negocio WHERE id > 0";
     if($id!=NULL) $query.=" AND id=".$id."";
     if($this->status!=NULL) $query .= " AND status=".$this->status;
     if($this->search!=NULL) $query .= " AND ".$this->search_field." LIKE '%".$this->search."%'";

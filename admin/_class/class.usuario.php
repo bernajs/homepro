@@ -15,11 +15,11 @@ class Usuario extends Helper {
     var $modified_at;
     var $id;
     var $oid;
-    
+    var $device;
     // Cotizacion
     var $id_negocio;
     var $id_cotizacion;
-    
+
     // Direccion
     var $calle;
     var $ciudad;
@@ -29,9 +29,9 @@ class Usuario extends Helper {
     var $pais;
     var $info;
     var $uid;
-    
+
     public function __construct(){ $this->sql = new dbo(); }
-    
+
     public function db($key){
         switch($key){
             case "insert":
@@ -84,8 +84,8 @@ class Usuario extends Helper {
                     $this->execute($query);
             }
         }
-        
-        
+
+
         $query = "";
         break;
     case "agregarFavoritos":
@@ -102,7 +102,7 @@ class Usuario extends Helper {
         // Crea en json con los datos del billing
         $this->info =array('calle' => $this->calle, 'ciudad' => $this->ciudad, 'estado' => $this->estado,
         'municipio'=>$this->municipio,'cp'=>$this->cp, 'pais'=>$this->pais);
-        
+
         $query = "INSERT INTO usuario_direccion (direccion,id_usuario,status, created_at)
         VALUES (
         '".json_encode($this->info)."',
@@ -115,7 +115,7 @@ class Usuario extends Helper {
         // Crea en json con los datos del billing
         $this->info =array('calle' => $this->calle, 'ciudad' => $this->ciudad, 'estado' => $this->estado,
         'municipio'=>$this->municipio,'cp'=>$this->cp, 'pais'=>$this->pais);
-        
+
         $query = "UPDATE usuario_direccion
         SET
         direccion='".json_encode($this->info)."',
@@ -126,7 +126,7 @@ class Usuario extends Helper {
         $query = 'DELETE FROM usuario_direccion WHERE id = '.$this->id;
         break;
     case "update_onesignal_id":
-        $query = "UPDATE usuario SET oid='".$this->oid."' WHERE id=".$this->uid;
+        $query = "UPDATE usuario SET oid='".$this->oid."', device='".$this->device."' WHERE id=".$this->uid;
         break;
 }
 $lid = false;
@@ -151,7 +151,7 @@ public function getUsuarios($id = NULL){
     if($this->order!=NULL) $query .= " ORDER BY ".$this->order;
     if($this->limit!=NULL) $query .= " LIMIT ".$this->limit;
     return $this->execute($query);
-    
+
     // SELECT nombre, id_negocio, zona FROM negocio_zona
     // INNER JOIN cat_zona ON negocio_zona.id_zona = cat_zona.id
     // INNER JOIN negocio ON negocio_zona.id_negocio = negocio.id

@@ -11,9 +11,9 @@ class Suscripcion extends Helper {
     var $status;
     var $modified_at;
     var $id;
-    
+
     public function __construct(){ $this->sql = new dbo(); }
-    
+
     public function db($key){
         switch($key){
             case "insert":
@@ -27,6 +27,8 @@ class Suscripcion extends Helper {
                 '".$this->comentarios."',
                 '".$this->status."'
                 )";
+                $this->execute($query);
+                $query = "UPDATE negocio SET status = 1 WHERE id = ".$this->id_negocio;
                 break;
             case "update":
                 $query = "UPDATE negocio_suscripcion
@@ -40,7 +42,7 @@ class Suscripcion extends Helper {
                 //No debe de hacer una baja real, debe ser una baja logica
                 $query = "DELETE FROM negocio_suscripcion WHERE id=".$this->id;
                 break;
-            
+
     }
     $lid = false;
     if($key=="insert"){ $lid = true; }

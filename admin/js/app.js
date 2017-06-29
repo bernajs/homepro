@@ -337,7 +337,7 @@ User = {
                     alert("Se ha realizado el corte de -50 pts.");
                     location.reload();
                 } else if (r.status == 409) {
-                    //alert("User already exists"); 
+                    //alert("User already exists");
                 }
             });
     },

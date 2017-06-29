@@ -11,9 +11,9 @@ class Requerimiento extends Helper {
     var $created_at;
     var $modified_at;
     var $id;
-    
+
     public function __construct(){ $this->sql = new dbo(); }
-    
+
     public function db($key){
         switch($key){
             case "insert":
@@ -34,7 +34,7 @@ class Requerimiento extends Helper {
             break;
         case "delete": $query = "DELETE FROM requerimiento WHERE id=".$this->id;
             break;
-        
+
 }
 $lid = false;
 if($key=="insert"){ $lid = true; }
@@ -55,6 +55,20 @@ public function getData($id = NULL){
     if($this->order!=NULL) $query .= " ORDER BY ".$this->order;
     if($this->limit!=NULL) $query .= " LIMIT ".$this->limit;
     return $this->execute($query);
+}
+
+public function getRequerimientoNegocios($id){
+  $query = 'SELECT negocio_requerimiento.id_negocio, negocio.nombre AS negocio, usuario.nombre AS usuario FROM negocio_requerimiento
+  INNER JOIN negocio ON negocio_requerimiento.id_negocio = negocio.id
+  INNER JOIN requerimiento ON  requerimiento.id = '.$id.'
+  INNER JOIN usuario ON requerimiento.id_usuario = usuario.id
+  WHERE negocio_requerimiento.id_requerimiento = '.$id;
+  return $this->execute($query);
+}
+
+public function getChat($requerimiento, $negocio){
+  $query = 'SELECT * FROM chat WHERE id_requerimiento = '.$requerimiento. ' AND id_negocio = '.$negocio;
+  return $this->execute($query);
 }
 }
 ?>

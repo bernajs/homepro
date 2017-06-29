@@ -69,8 +69,10 @@ case "getChat":
     $id_usuario = $data['id_usuario'];
     $chat = $obj->getChat($id_requerimiento, $id_negocio, $id_usuario);
     $obj->readChatNegocio($id_requerimiento, $id_negocio, $id_usuario);
+    $fecha = $obj->getFechaAtendido($id_requerimiento);
     if($chat){
         $result['data'] = $chat;
+        $result['fecha'] = $fecha[0]['fecha_atn'];
         $result['status'] = 202;
 }else{
     $result['status'] = 0;
@@ -92,7 +94,7 @@ case "enviarChat":
     if($uoid){
         echo $uoid[0]['oid'];
         echo $url;
-        $url = 'https://app.homepro.mx/chatmio.html?negocio='.$data['id_negocio'].'&requerimiento='.$data['id_requerimiento'].'&s='.$data['servicio'];
+        $url = 'https://app.homepro.mx/chat.html?negocio='.$data['id_negocio'].'&requerimiento='.$data['id_requerimiento'].'&s='.$data['servicio'];
         $push->sendMessage($uoid[0]['oid'],'Tienes un nuevo mensaje.', $url, NULL);
 }
 // $result['redirect'] = 'perfil.html';
@@ -128,10 +130,10 @@ case "getUsuario":
         // echo "entra a telefono";
         unset($usuarioinfo[0]['movil']);
     }
-    
-    
+
+
     // print_r($usuarioinfo);
-    
+
     if($info['direccion']){
         $dir = explode(',', $info['direccion']);
         foreach ($dir as $id) {

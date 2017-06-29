@@ -1,5 +1,6 @@
 $(document).ready(function () {
     $('#example').DataTable({
+      "order": [ 0, 'desc' ],
         "pageLength": 25,
         language: {
             sLengthMenu: "Mostrar _MENU_ resultados",

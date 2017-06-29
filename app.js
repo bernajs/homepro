@@ -1382,7 +1382,7 @@ Customer = {
                             if (element.mensaje > 0) {
                                 notificacion += `<span class="new badge color-rojo">` + element.mensaje + `</span>`;
                             }
-                            buffer += `<li class="collection-item avatar cotizacion"><a href="chatmio.html?negocio=` + element.id_negocio + `&requerimiento=` + element.id_requerimiento + `&s=` + element.servicio + `">
+                            buffer += `<li class="collection-item avatar cotizacion"><a href="chat.html?negocio=` + element.id_negocio + `&requerimiento=` + element.id_requerimiento + `&s=` + element.servicio + `">
                             <img src="http://www.freeiconspng.com/uploads/sms-alert-icon-3.png" alt="" class="circle icon-msj">
                             ` + notificacion + `
                             <span class="title requerimiento negocio"><b>`+ element.negocio + ` </b></span>

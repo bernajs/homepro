@@ -14,12 +14,12 @@ class Service extends Helper {
     var $status;
     var $modified_at;
     var $id;
-    
+
     // Cotizacion
     var $id_negocio;
     var $id_cotizacion;
     var $imagenes;
-    
+
     // Direccion
     var $direccion;
     var $calle;
@@ -30,19 +30,19 @@ class Service extends Helper {
     var $colonia;
     var $info;
     var $ubicacion;
-    
+
     // Chat
     var $mensaje;
     var $tipo_usuario;
     var $id_usuario;
     var $id_requerimiento;
-    
+
     // Evaluar
     var $testimonio;
     var $calificacion;
-    
+
     public function __construct(){ $this->sql = new dbo(); }
-    
+
     public function db($key){
         switch($key){
             case "insert":
@@ -126,14 +126,14 @@ class Service extends Helper {
         '".$this->status."',
         '".$this->created_at."'
         )";
-        
+
         $this->execute($query);
         $query = "UPDATE negocio_requerimiento
         SET
         modified_at='".$this->created_at."'
         WHERE id_requerimiento=".$this->id_requerimiento.' AND id_negocio='.$this->id_negocio;
         $this->execute($query);
-        
+
         $query = "UPDATE requerimiento
         SET
         modified_at='".$this->created_at."'
@@ -193,7 +193,7 @@ case 'agregarDireccion':
     // Crea en json con los datos del billing
     $this->info =array('calle' => $this->calle, 'ciudad' => $this->ciudad, 'estado' => $this->estado,
     'municipio'=>$this->municipio,'cp'=>$this->cp, 'colonia'=>$this->colonia);
-    
+
     $query = "INSERT INTO usuario_direccion (direccion,id_usuario,status, created_at)
     VALUES (
     '".json_encode($this->info)."',
@@ -206,7 +206,7 @@ case 'actualizarDireccion':
     // Crea en json con los datos del billing
     $this->info =array('calle' => $this->calle, 'ciudad' => $this->ciudad, 'estado' => $this->estado,
     'municipio'=>$this->municipio,'cp'=>$this->cp, 'colonia'=>$this->colonia);
-    
+
     $query = "UPDATE usuario_direccion
     SET
     direccion='".json_encode($this->info)."',
@@ -215,6 +215,9 @@ case 'actualizarDireccion':
     break;
 case "borrarDireccion":
     $query = 'DELETE FROM usuario_direccion WHERE id = '.$this->id;
+    break;
+case "deleteMsj":
+    $query = 'DELETE FROM chat WHERE id = '.$this->id;
     break;
 }
 $lid = false;
@@ -236,11 +239,11 @@ public function check_tel($tel){
 }
 
 public function getUOID($id){
-    $query = 'SELECT oid FROM usuario WHERE id = '.$id. ' AND status = 1';
+    $query = 'SELECT oid, device FROM usuario WHERE id = '.$id. ' AND status = 1';
     return $this->execute($query);
 }
 public function getNOID($id){
-    $query = 'SELECT oid FROM negocio WHERE id = '.$id. ' AND status = 1';
+    $query = 'SELECT oid, device FROM negocio WHERE id = '.$id. ' AND status = 1';
     return $this->execute($query);
 }
 // Servicios
@@ -297,7 +300,6 @@ public function getNegocioFiltro($id_servicio=null, $id_zona=null, $id_usuario){
         INNER JOIN negocio_zona ON negocio_zona.id_negocio = negocio.id
         INNER JOIN cat_zona ON cat_zona.id=".$id_zona."
         WHERE negocio_servicio.id_servicio=".$id_servicio.' AND negocio.status = 1 AND negocio_zona.id_zona='.$id_zona;
-        // echo $query;
         $negocios = $this->execute($query);
         for ($i=0; $i < count($negocios); $i++) {
             $query = 'SELECT zona FROM negocio_zona
@@ -398,7 +400,7 @@ public function getFavoritos($id){
     $zonas = array();
     $servicios = array();
     $negocios =  $this->execute($query);
-    
+
     for ($i=0; $i < count($negocios); $i++) {
         array_push($zonas, $this->NegocioZonas($negocios[$i]['id']));
         array_push($servicios, $this->NegocioServicios($negocios[$i]['id']));
@@ -422,7 +424,9 @@ public function getCotizacionDetalle($id){
         AND id_negocio = '.$cotizacion['id_negocio'].' AND status = 0 AND tipo_usuario = 1';
         array_push($mensajes, $this->execute($query));
     }
-    $data =  array("negocios"=> $cotizaciones, "mensajes"=>$mensajes);
+    $query = 'SELECT imagen FROM requerimiento WHERE id = '.$id;
+    $imagenes = $this->execute($query);
+    $data =  array("negocios"=> $cotizaciones, "mensajes"=>$mensajes, "imagenes"=> $imagenes);
     return ($data);
 }
 
@@ -446,7 +450,7 @@ public function getCotizaciones($id){
 // NEGOCIO
 
 public function getNegocio($id){
-    $query = 'SELECT nombre, movil FROM negocio WHERE id='.$id;
+    $query = 'SELECT nombre, movil, informacion, telefono FROM negocio WHERE id='.$id;
     return $this->execute($query);
 }
 
@@ -468,6 +472,7 @@ public function getNegocios($id_servicio, $id_zona){
             WHERE negocio_zona.id_zona ='.$id_zona;
         }
     }
+    echo $query;
     return $this->execute($query);
 }
 public function negocioTestimonios($id){
@@ -542,7 +547,7 @@ public function correoVotoCiudad($id_ciudad, $correo){
 }
 // Chat
 public function getChat($id_requerimiento, $id_negocio){
-    $query = 'SELECT mensaje, tipo_usuario, servicio, chat.created_at FROM chat
+    $query = 'SELECT chat.id, mensaje, tipo_usuario, servicio, chat.created_at FROM chat
     INNER JOIN requerimiento ON requerimiento.id = '.$id_requerimiento.'
     INNER JOIN cat_servicio ON cat_servicio.id = requerimiento.id_servicio
     WHERE chat.id_requerimiento = '.$id_requerimiento.' AND chat.id_negocio ='.$id_negocio.' ORDER BY CAST(chat.created_at as datetime) ASC';
@@ -567,17 +572,17 @@ public function readChatUsuario($id_requerimiento, $id_negocio){
     $query = 'UPDATE chat SET status = 1 WHERE id_requerimiento = '.$id_requerimiento.' AND id_negocio ='.$id_negocio. ' AND tipo_usuario = 1';
     $this->execute($query);
 }
+
 public function getNegociosSuscripcion(){
     $query = 'SELECT id_negocio FROM `negocio_suscripcion` WHERE CAST(fecha_fin AS DATE) < CAST(CURRENT_TIMESTAMP AS DATE)';
     $negocios = $this->execute($query);
-    
     if($negocios){
         foreach ($negocios as $negocio) {
-            $query = 'UPDATE negocio SET status = 0 WHERE id='.$negocio['id_negocio'];
-            $this->execute($query);
+            $query = 'SELECT * FROM negocio_suscripcion WHERE CAST(fecha_fin AS DATE) > CAST(CURRENT_TIMESTAMP AS DATE) AND id_negocio = '.$negocio['id_negocio'];
+            $suscripcion = $this->execute($query);
+            if(!$suscripcion){$query = 'UPDATE negocio SET status = 0 WHERE id='.$negocio['id_negocio'];$this->execute($query);}
         }
     }
 }
-
 }
 ?>

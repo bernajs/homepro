@@ -42,14 +42,14 @@
             background-color: rgba(0, 0, 0, .80);
             z-index: 1000;
         }
-        
+
         .loader,
         .loader:after {
             border-radius: 50%;
             width: 100px;
             height: 100px;
         }
-        
+
         .loader {
             margin: 60px auto;
             font-size: 10px;
@@ -69,7 +69,7 @@
             -webkit-animation: load8 1.1s infinite linear;
             animation: load8 1.1s infinite linear;
         }
-        
+
         @-webkit-keyframes load8 {
             0% {
                 -webkit-transform: rotate(0deg);
@@ -80,7 +80,7 @@
                 transform: rotate(360deg);
             }
         }
-        
+
         @keyframes load8 {
             0% {
                 -webkit-transform: rotate(0deg);
@@ -91,7 +91,7 @@
                 transform: rotate(360deg);
             }
         }
-        
+
         footer {
             position: fixed;
             left: 0px;
@@ -101,33 +101,33 @@
             background-color: black !important;
             opacity: .8 !important;
         }
-        
+
         .select-wrapper input.select-dropdown {
             border-bottom: none !important;
             margin-bottom: 0px !important;
         }
-        
+
         .modal .modal-content {
             padding: 0px !important;
         }
-        
+
         .acciones {
             margin-top: 15px !important;
         }
-        
+
         .negocio {
             margin-left: -14px !important;
             padding-left: 60px !important;
         }
-        
+
         #data {
             height: calc(100% - 75px) !important;
         }
-        
+
         form label {
             position: absolute !important;
         }
-        
+
         [type="checkbox"]+label:before,
         [type="checkbox"]:not(.filled-in)+label:after {
             margin-top: 20px !important;
@@ -137,28 +137,28 @@
             /*z-index: 99 !important;*/
             /*float:left !important;*/
         }
-        
+
         .select {
             padding-left: 0px !important;
         }
-        
+
         .select-wrapper input.select-dropdown {
             line-height: 0px !important;
         }
-        
+
         .header-servicio {
             margin-left: 4.2% !important;
             padding: 0px !important;
         }
-        
+
         .btn-flat {
             color: white !important;
         }
-        
+
         .page-footer {
             display: none;
         }
-        /*    
+        /*
 
     [type="checkbox"]+label:before,
 
@@ -169,42 +169,47 @@
       height: 25px !important;
 
     }*/
-        
+
         .collection-item {
             padding-left: 60px !important;
         }
-        
+
         .div-calificacion {
             margin-top: 3px !important;
         }
-        
+
         #frmEvaluar {
             margin-top: 25px !important;
         }
-        
+
         .div-exp {
             margin-top: 40px !important;
         }
-        
+
         footer {
             margin-top: 0px !important;
         }
-        
+
         #data {
             margin-bottom: 55px !important;
         }
-        
+
         .resultados {
             padding-left: 4.2%!important;
         }
-        
+
         .container {
             width: 95% !important;
         }
-        
+
         .caret {
             margin-right: 13% !important;
         }
+
+        .telefonos .collection-item{
+          padding: 10px 40% !important;
+        }
+        .marginl-20{margin-left: 20px !important;}
     </style>
 
 </head>
@@ -242,7 +247,7 @@
             </form>
         </div>
         <!-- Modal Structure -->
-        <div id="modal2" class="modal modal-fixed-footer">
+        <div id="modal3" class="modal modal-fixed-footer">
             <div class="modal-content">
                 <div class="row color-negro txt-blanco">
                     <div class="col s12">
@@ -267,6 +272,12 @@
                 </div>
                 <hr>
                 <div class="row">
+                  <div class="col s12">
+                    <div class="marginl-20">
+                      <h5>Descripción</h5>
+                      <p class="descripcion"></p>
+                    </div>
+                  </div>
                     <div class="col s12">
                         <div class="page-title">
                             <h5>Testimoniales</h5>
@@ -312,6 +323,19 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Modal Structure -->
+        <div id="modal2" class="modal">
+          <div class="modal-content">
+            <h5 class="center-align">Llamar a:</h5>
+            <div class="row">
+              <ul class="collection center-align telefonos">
+                <li class="valign-wrapper collection-item celular"></li>
+                <li class="valign-wrapper collection-item telefono"></li>
+              </ul>
+            </div>
+          </div>
         </div>
     </div>
     <footer class="page-footer">
@@ -369,16 +393,6 @@
                 var count = $("[type='checkbox']:checked").length;
 
                 count <= 0 ? $('.page-footer').hide('blind') : $('.page-footer').show('fold');
-                // if (count <= 0) {
-                //     $('.page-footer').hide('slow');
-                // } else {
-                //     $('.page-footer').show('blind');
-                //     $(".page-footer").animate({
-                //         marginTop: "-=100px"
-                //     }, 300);
-                // }
-                // console.log('seleccionados');
-                // var seleccionados = $('input:checked');
             });
         });
     </script>

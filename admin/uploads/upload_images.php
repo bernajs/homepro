@@ -4,6 +4,7 @@ $storeFolder = 'cotizacion';
 if(!empty($_FILES)){
     #REMOVE ALL FILES
     $uid = $_POST['uid'];
+    $img = $_POST['img'];
     //$files = glob(dirname( __FILE__ ) ."/". $storeFolder ."/*");
     //foreach($files as $file){ if(is_file($file)) unlink($file); }
     $cotizacionFolder = $storeFolder.'/usuario_'.$uid;
@@ -19,7 +20,7 @@ if(!empty($_FILES)){
     // echo $date;
     // $datef = $date[0].''.$date[1];
     $filename =  $_FILES['file']['name'];
-    $targetFile =  $targetPath.$filename;
+    $targetFile =  $targetPath.$img;
     echo $filename;
     // unlink($targetFile);
     move_uploaded_file($tempFile,$targetFile);

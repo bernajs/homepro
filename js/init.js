@@ -210,9 +210,10 @@ var User = {
                             var fecha_fin = new Date(r.data[0].fecha_fin);
                             fecha_fin.setDate(fecha_fin.getDate() + 1);
                             if (fecha_fin >= hoy) {
+                                var difano = fecha_fin.getYear() - hoy.getYear();
                                 var difmes = fecha_fin.getMonth() - hoy.getMonth();
                                 var difdia = fecha_fin.getDate() - hoy.getDate();
-                                if (difmes == 0 && difdia < 15) {
+                                if (difano == 0 && difmes == 0 && difdia < 15) {
                                     swal({
                                         title: "Aviso",
                                         text: "Tu suscripción vence en " + difdia + " dia(s).",
